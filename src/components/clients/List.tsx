@@ -2,14 +2,17 @@
 import { ListClientsProps } from "@app/types/clients";
 import ModalRouteGPS from "./ModalRouteGPS";
 import { DataGrid, GridColDef, GridToolbar, ptBR } from '@mui/x-data-grid';
-import { useState } from "react";
+import { ChangeEvent, ChangeEventHandler, Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import useSWR from "swr";
 import Link from "next/link";
+import { TextField } from "@mui/material";
+import styled from "styled-components";
+import axios from "axios";
 
 const columns: GridColDef[] = [
-  { field: 'name', headerName: 'Nome', width: 130 },
-  { field: 'email', headerName: 'E-mail', width: 130 },
-  { field: 'cellphone', headerName: 'Telefone', width: 130 },
+  { field: 'name', headerName: 'Nome', flex: 1 },
+  { field: 'email', headerName: 'E-mail', flex: 1 },
+  { field: 'cellphone', headerName: 'Telefone', flex: 1 },
   {
     field: 'lat',
     headerName: 'Latitude',
@@ -24,10 +27,13 @@ const columns: GridColDef[] = [
   },
 ];
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+const fetcher = (...args: any) => fetch(args).then(res => res.json())
+
 export default function ListClients({ clients }: ListClientsProps) {
+
   const [isShowModalRouteGPS, setIsShowModalRouteGPS] = useState(false);
-  const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/clients/calc-routes`, fetcher);
+
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/clients/calc-routes`, fetcher);
 
   const toggleModalRouteGPS = () => {
     setIsShowModalRouteGPS(!isShowModalRouteGPS);
@@ -35,7 +41,6 @@ export default function ListClients({ clients }: ListClientsProps) {
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <h1 className="text-2xl mb-4 text-white">Lista de clientes</h1>
       <DataGrid
         rows={clients}
         columns={columns}
@@ -44,6 +49,7 @@ export default function ListClients({ clients }: ListClientsProps) {
             paginationModel: { page: 0, pageSize: 5 },
           },
         }}
+
         pageSizeOptions={[5, 10]}
         checkboxSelection
         sx={{
@@ -74,9 +80,6 @@ export default function ListClients({ clients }: ListClientsProps) {
           }
         }}
         localeText={ptBR.components.MuiDataGrid.defaultProps.localeText}
-        slots={{
-          toolbar: GridToolbar,
-        }}
       />
       <div className="flex justify-end">
         <Link href="/clients/register" className="font-medium hover:bg-blue-600 hover:text-white text-blue-600 dark:text-blue-500 hover:underline flex float-right mt-6 items-center mr-6 border border-blue-600 rounded-md p-3">

@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type ClientType = {
     id: String,
     name: String,
