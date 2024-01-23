@@ -21,7 +21,7 @@ Certifique-se de ter o Node.js e o Yarn instalados em sua máquina.
   Edite o arquivo .env.local e defina a variável NEXT_PUBLIC_API_URL com a URL da sua API. Exemplo:
 
 ```bash
-    NEXT_PUBLIC_API_URL=http://localhost:3000
+    NEXT_PUBLIC_API_URL=http://localhost:3001
 ```
 4. Inicie o servidor de desenvolvimento:
 ```bash
