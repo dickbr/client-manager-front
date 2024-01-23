@@ -1,7 +1,7 @@
 # Client Manager Frontend
 
 ## Descrição
-Este é o Frontend do sistema de gerenciamento de clientes, desenvolvido com Next.js. A interface do usuário utiliza componentes do Material-UI e consome a API fornecida pelo [Client Manager API](https://github.com/seu-usuario/client-manager-api).
+Este é o Frontend do sistema de gerenciamento de clientes, desenvolvido com Next.js. A interface do usuário utiliza componentes do Material-UI e consome a API fornecida pelo [Client Manager API](https://github.com/dickbr/client-manager-api).
 
 ## Instalação
 
