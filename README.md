@@ -29,6 +29,7 @@ Certifique-se de ter o Node.js e o Yarn instalados em sua máquina.
     yarn dev
 ```
 A aplicação estará disponível em http://localhost:3000.
+
 Tecnologias Utilizadas
 
     Next.js
